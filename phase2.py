@@ -2,6 +2,9 @@
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+#TEAM 1: Amanda, Ryan, Avraham, Andrew
 
 # Use pandas to read the csv file
 df = pd.read_csv("natops_processed.csv")  # Ensure that the file is in the correct directory
@@ -17,8 +20,28 @@ X = df[feature_cols]
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
+# Using the Elbow method we will plot the inertias of the KMeans algorithm over incrementing k# clusters starting with 1 cluster.
+def optimise_k_means(data, max_k):
+    means = []
+    inertias = []
+
+    for k in range(1, max_k):
+        kmeans= KMeans(n_clusters=k, random_state=42)
+        kmeans.fit(data)
+        means.append(k)
+        inertias.append(kmeans.inertia_)
+    fig, _ = plt.subplots(figsize=(10,5))
+    plt.plot(means, inertias, 'o-')
+    plt.xlabel('Number of Clusters')
+    plt.ylabel('Inertia')
+    plt.title('Elbow Method for Optimal k')
+    plt.grid(True)
+    plt.show()
+
+optimise_k_means(X_scaled, 20)
+
 # Use KMeans to cluster
-n_clusters = 10 # I expect 10 clusters from this so thats what I will use
+n_clusters = 8 # We expect an optimal number of 8 clusters from our analysis using the elbow method
 kmeans = KMeans(n_clusters=n_clusters, random_state=42) # Using the KMeans function, the heavy lifting is done for us
 df['cluster'] = kmeans.fit_predict(X_scaled) #Save what was done in a cluster column
 
