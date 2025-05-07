@@ -41,7 +41,7 @@ def optimise_k_means(data, max_k):
 optimise_k_means(X_scaled, 20)
 
 # Use KMeans to cluster
-n_clusters = 8 # We expect an optimal number of 8 clusters from our analysis using the elbow method
+n_clusters = 11 # We expect an optimal number of 11 clusters from our analysis using the elbow method
 kmeans = KMeans(n_clusters=n_clusters, random_state=42) # Using the KMeans function, the heavy lifting is done for us
 df['cluster'] = kmeans.fit_predict(X_scaled) #Save what was done in a cluster column
 
