@@ -101,7 +101,7 @@ results = pd.DataFrame({
     "Test Accuracy": [knn_acc, mlp_acc]
 })
 
-print("\nModel comparisons:")
+print("\nModel Accuracies:")
 print(results)
 
 
