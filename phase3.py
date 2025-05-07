@@ -39,10 +39,10 @@ if target_column not in df.columns:
 # 2. Data Preprocessing
 
 # Separate features and labels
-X_train = df.drop(columns=[target_column, 'sid', 'is_test'])
-X_test = df.drop(columns=[target_column, 'sid', 'is_test'])
-y_train = df[target_column]
-y_test = df[target_column]
+X_train = train_df.drop(columns=[target_column, 'sid', 'is_test'])
+X_test = test_df.drop(columns=[target_column, 'sid', 'is_test'])
+y_train = train_df[target_column]
+y_test = test_df[target_column]
 
 # It might be beneficial to examine correlations and perform feature selection,
 # but for this template we proceed with all features.
@@ -100,6 +100,10 @@ results = pd.DataFrame({
     "Model": ["KNN", "MLP Classifier"],
     "Test Accuracy": [knn_acc, mlp_acc]
 })
+
+print("\nModel comparisons:")
+print(results)
+
 
 # Additional training details (e.g., training curve) could be generated for deep learning models (e.g., using validation loss)
 # by enabling early stopping callbacks during training if using frameworks such as TensorFlow or PyTorch.
