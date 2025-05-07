@@ -50,7 +50,7 @@ y_test = df[target_column]
 # Standardize features
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.fit_transform(X_test)
+X_test_scaled = scaler.transform(X_test)
 
 
 print("\nTrain/test split:")
@@ -62,11 +62,11 @@ print("Testing samples:", X_test.shape[0])
 def train_and_evaluate(model, model_name="Model"):
     print(f"\n=== {model_name} ===")
     # Training
-    model.fit(X_train, y_train)
+    model.fit(X_train_scaled, y_train)
     print("Training completed.")
 
     # Prediction on test set
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test_scaled)
 
     # Evaluation metrics
     acc = accuracy_score(y_test, y_pred)
