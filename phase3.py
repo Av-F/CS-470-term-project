@@ -103,12 +103,3 @@ results = pd.DataFrame({
 
 print("\nModel Accuracies:")
 print(results)
-
-
-# Additional training details (e.g., training curve) could be generated for deep learning models (e.g., using validation loss)
-# by enabling early stopping callbacks during training if using frameworks such as TensorFlow or PyTorch.
-
-# 6. Conclusion:
-# Summarize the performance of the different classifiers. You might observe trade-offs in training time, complexity,
-# and evaluation metrics. Use these insights in your final presentation slides to discuss which model(s) may be most 
-# suitable for the deployment of NATOPS gesture classification, and why.
